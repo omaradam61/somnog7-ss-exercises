@@ -1,0 +1,184 @@
+=== Listing files and directories (ls)
+When you first login, your current working directory is your home directory. Your home directory
+has the same name as your user-name, for example, somnog , and it is where your personal
+files and subdirectories are saved.
+To find out what is in your home directory type
+The ls command lists the contents of your current working directory.
+To list all files in your home directory including those whose names begin with a dot(All hidden
+files start with a dot .), type
+
+----
+ls -a
+----
+To list files in long list format:
+
+----
+ls -l
+----
+=== Making Directories (mkdir)
+We will now make a new directory in your home directory
+mkdir somnog5
+You can also create multiple directories with one command:
+mkdir somnog7 somnog4 somnog1
+To see the directory you have just created, type
+
+----
+ls
+----
+
+=== Changing to a different directory (cd)
+The command cd directory means change the current working directory to 'directory'.
+To change to the directory you have just made, type
+
+----
+cd somnog7
+----
+Still in the somnog directory, type
+Typing cd with no argument always returns you to your home directory. This is very useful if you
+are lost in the file system.
+Pathnames (pwd)
+pwd enable you to print out where you are in relation to the whole file-system:
+
+----
+pwd
+----
+=== ~ (your home directory)
+Home directories can also be referred to by the tilde ~ character. It can be used to specify paths
+starting at your home directory. So typing
+
+----
+cd ~ or cd
+----
+=== Copying Files and Directories (cp)
+To copy from file to file2 run.
+
+----
+cp file1 file2
+----
+
+Directories can also be copied with the cp command, but it’s necessary to add the option –r to
+do so. This option means ‘recursive’ and will copy the contents of the directory as well as the
+directory itself, for example:
+
+----
+cp -r dir1 dir2
+----
+
+=== Moving files and Directories (mv)
+
+----
+mv file1 file2.
+----
+
+This would rename a directory. Finally,
+Or you can move a file/directory using mv command
+For example, in your home directory create two new directories in a single command:
+
+----
+mkdir dir1 dir2
+----
+
+Also create a new file named myfile.txt using nano with this content “Hello SomNOG5!”
+Then check that the file is created in your current directory by running:
+
+----
+ls
+----
+
+Now, move myfile.txt to dir1 by running:
+
+----
+mv myfile.txt dir1
+----
+
+Now check if you have myfile.txt in your current directory, you can guess the command you run,
+right?
+
+----
+ls
+----
+
+Of course you will not see! Now list the content of dir1:
+
+----
+ls dir1
+----
+
+Did you see it?
+==== Removing Files (rm) and Directories (rmdir)
+To delete (remove) a file, use the rm command. Create two empty files, file5 and file6
+----
+touch file5 file6
+----
+
+Inside your somnog directory, type
+----
+rm file5
+----
+
+In order to delete an empty directory you can use the command rmdir:
+----
+rmdir dir2
+----
+
+Now, attempt to delete dir1 with rmdir command
+----
+rmdir dir1
+----
+
+However this won't remove directories that already have files in them, instead you can use
+to recursively delete files in directory (rm -r)
+
+----
+rm -r dir1
+----
+
+=== cat (concatenate)
+The command cat can be used to display the contents of a file on the screen.
+
+----
+cat file1.txt
+----
+
+less
+The command less writes the contents of a file onto the screen a page at a time. Type
+
+----
+cp /var/log/syslog logfile.txt
+less logfile.txt
+----
+
+Press the space bar if you want to see another page, type q if you want to quit reading. As you
+can see, less is used in preference to cat for long files.
+head
+The head command writes the first ten lines of a file to the screen. First clear the screen then
+type
+----
+head logfile.txt
+----
+Now type:
+----
+head -5 logfile.txt
+----
+
+What difference did the -5 do to the head command?
+What about?
+
+----
+head -2 logfile.txt
+----
+
+=== tail
+The tail command writes the last ten lines of a file to the screen. Clear the screen and type:
+----
+tail logfile.txt
+----
+How can you view the last 15 lines of the file?
+----
+tail -15 logfile.txt
+----
+Check your IP address:
+ip address
+----
+ip a
+----

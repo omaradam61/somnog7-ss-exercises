@@ -1,0 +1,112 @@
+= Install Nextcloud steps
+
+In this challenge, we are going to Install NextCloud On Ubuntu 22.04 LTS, This will be a detailed step-by-step high-performance Setup.
+
+
+* 1. Install PHP and MySQL packages
+* 2. Configure MySQL Server
+* 3. Run the Nextcloud Setup on the Browser.
+
+Step 1 install packages:
+
+1. Become root user:
+[,bash]
+----
+sudo -i 
+----
+
+2. Update and upgrade your server:
+
+[,bash]
+----
+sudo apt update && sudo apt upgrade -y
+----
+
+3: Install the following packages:
+[,bash]
+----
+sudo apt install apache2 mariadb-server libapache2-mod-php php-gd php-mysql php-curl php-mbstring php-intl php-gmp php-bcmath php-xml php-imagick php-zip -y
+----
+[,bash]
+----
+apt install libapache2-mod-php php-bz2 php-gd php-mysql php-curl php-mbstring php-imagick php-zip php-ctype php-curl php-dom php-json php-posix php-bcmath php-xml php-intl php-gmp zip unzip wget -y
+----
+
+4: Enable the following modules:
+
+[,bash]
+----
+a2enmod rewrite dir mime env headers
+----
+
+Then restart your web server:
+[,bash]
+----
+systemctl restart apache2
+----
+
+Step 2: Configure MySQL Server
+
+1. Login to MySQL Prompt, Just type 
+[,bash]
+----
+mysql
+----
+2. Create MySQL Database and User for Nextcloud and Provide Permissions:
+
+[,bash]
+----
+CREATE USER 'nextcloud'@'localhost' IDENTIFIED BY 'passw@rd';
+CREATE DATABASE IF NOT EXISTS nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost';
+FLUSH PRIVILEGES;
+quit;
+----
+
+Step 3: Download and Install Nextcloud
+
+Now download the latest Nextcloud archive file, Go to the Nextcloud Download Page. Or you can download from this direct link: https://download.nextcloud.com/server/releases/latest.zip.
+
+1. Download and unzip at the web root (/var/www/html) folder:
+
+[,bash]
+----
+cd /var/www/html
+wget https://download.nextcloud.com/server/releases/latest.zip
+unzip latest.zip
+----
+
+2. Move all nextcloud content to the web root (/var/www/html) folder:
+
+[,bash]
+----
+cd /var/www/html/nextcloud
+----
+
+[,bash]
+----
+mv * .* ../
+----
+
+3. Remove empty nextcloud directory:
+
+
+[,bash]
+----
+rmdir /var/www/html/nextcloud
+----
+
+4. Change the ownership of the nextcloud content directory to the HTTP user:
+
+[,bash]
+----
+chown -R www-data:www-data /var/www/html
+----
+
+
+Now, Go to the Browser and type http:// [ ip or fqdn ] of the server, The below Nextcloud install page will appear. On the page we need to Provide information for:
+* 1. nextcloud admin username & password
+* 2. Database Credentials (db name, db user and db Password)
+
+
+http://ip-address-or-dns
